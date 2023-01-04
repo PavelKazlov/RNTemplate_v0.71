@@ -1,0 +1,34 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnPaste": true, // format code on paste
+  "editor.formatOnType": true, // format code as you type
+  "editor.formatOnSave": true, // format code when you hit save
+  "files.trimFinalNewlines": true, // Ensures there's only one blank line at the end of the file
+  "files.trimTrailingWhitespace": true, // remove trailing white spaces from all lines
+  "prettier.trailingComma": "es5",
+  "prettier.semi": false,
+  "prettier.printWidth": 120,
+  "editor.rulers": [120],
+  "editor.tabSize": 2,
+  "files.exclude": {
+    "**/.git": true,
+    ".jest/": true,
+    "build": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    ".vscode/.react/*": true
+  },
+  "cSpell.words": ["cybermetals", "formik", "gradlew"],
+  "cSpell.diagnosticLevel": "Hint",
+  "typescript.tsdk": "./node_modules/typescript/lib",
+  "todohighlight.exclude": ["node_modules/**", ".vscode/**"],
+  "typescript.format.enable": false,
+  "[json]": {
+    "editor.formatOnSave": false
+  },
+  "javascript.validate.enable": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
+}
