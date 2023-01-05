@@ -9,9 +9,11 @@
  */
 
 import {Button} from '@/components'
+import {BottomTabNavigator} from '@/navigation/BottomTabNavigator'
+import {NavigationContainer} from '@react-navigation/native'
 import React, {type PropsWithChildren} from 'react'
+import {SafeAreaProvider} from 'react-native-safe-area-context'
 import {
-  Alert,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -22,89 +24,66 @@ import {
 } from 'react-native'
 
 import {
-  Colors,
+  // Colors,
   DebugInstructions,
   Header,
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen'
+import {ApplicationStackNavigator} from '@/navigation/ApplicationStackNavigator'
+import {Colors} from '@/constants'
 
-const Section: React.FC<
-  PropsWithChildren<{
-    title: string
-  }>
-> = ({children, title}) => {
-  const isDarkMode = useColorScheme() === 'dark'
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  )
-}
+// const Section: React.FC<
+//   PropsWithChildren<{
+//     title: string
+//   }>
+// > = ({children, title}) => {
+//   const isDarkMode = useColorScheme() === 'dark'
+//   return (
+//     <View style={styles.sectionContainer}>
+//       <Text
+//         style={[
+//           styles.sectionTitle,
+//           {
+//             color: isDarkMode ? Colors.white : Colors.black,
+//           },
+//         ]}>
+//         {title}
+//       </Text>
+//       <Text
+//         style={[
+//           styles.sectionDescription,
+//           {
+//             color: isDarkMode ? Colors.light : Colors.dark,
+//           },
+//         ]}>
+//         {children}
+//       </Text>
+//     </View>
+//   )
+// }
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark'
 
   const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+    // backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+    backgroundColor: isDarkMode
+      ? Colors.backgroundPalladium
+      : Colors.primaryBackgroundColor,
   }
-  const handleGoBack = () => {
-    Alert.alert('Hi')
-  }
+
   return (
-    <SafeAreaView style={backgroundStyle}>
+    <SafeAreaProvider style={backgroundStyle}>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Button
-            onPress={handleGoBack}
-            outlined
-            buttonStyle={styles.buttonContainer}>
-            Test
-          </Button>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+      <NavigationContainer>
+        <ApplicationStackNavigator />
+        {/* <BottomTabNavigator /> */}
+      </NavigationContainer>
+    </SafeAreaProvider>
   )
 }
 
